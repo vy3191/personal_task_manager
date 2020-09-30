@@ -11,5 +11,9 @@
     "Redux"
   ],
   "author": "Venky",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
