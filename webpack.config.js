@@ -18,8 +18,6 @@ const path = require('path');
 //5. What is webpack-dev-server?
 // webpack-dev-server(Express.js) and implemented Socket.
 
-
-
 module.exports = (env) => {  
     const isProd = env && env.production;
     console.log(env)
@@ -49,7 +47,8 @@ module.exports = (env) => {
       },
       mode: isProd && 'production' || 'development',
       devServer: {
-        contentBase: path.join(__dirname, 'public')
+        contentBase: path.join(__dirname, 'public'),
+        port: 3000
       }
     
     };
