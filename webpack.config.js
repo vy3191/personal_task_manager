@@ -3,12 +3,20 @@ const path = require('path');
 
 //  Why webpack dev server is required for development even webpack does watch and dev build?
 //   1. It will create the actual output file in output folder and it is a costlier process when application grows larger.
+
 //   2. It will not support Hot reloading in browser.
 //  What is hot reloading?
 //   In simple, don't reload the full page after the source file changes, just reload only the part of code which is changed.
+
 //  3.Is it possible to run application using webpack?
-//    Yes, it is possible to develop application only for small scale and it will utilize more system
+//    Yes, it is possible to develop application only for small apps and it will utilize more system
 //  resources like RAM and CPU - reason is - we actually writing a file whenever make a change.
+
+// 4. Express - is a framework which is used to create backend service and its routes.
+// Node is single threaded, So, express module simplifies the development work and make it easier to write secure and faster applications.
+
+//5. What is webpack-dev-server?
+// webpack-dev-server(Express.js) and implemented Socket.
 
 
 
@@ -39,7 +47,10 @@ module.exports = (env) => {
           }
         ]
       },
-      mode: isProd && 'production' || 'development'
+      mode: isProd && 'production' || 'development',
+      devServer: {
+        contentBase: path.join(__dirname, 'public')
+      }
     
     };
 }
