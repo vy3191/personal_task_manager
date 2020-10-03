@@ -42,6 +42,15 @@ module.exports = (env) => {
             test: /\.jsx?$/, 
             exclude: /node_modules/,
             use: 'babel-loader' 
+          },
+          { 
+            test: /\.css$/, 
+            // style-loader but all css into bundle.js. It will not create a separate style
+            use: ['style-loader', 'css-loader'],
+          },
+          { 
+            test: /\.scss$/, 
+            use: ['style-loader', 'css-loader', 'sass-loader'],
           }
         ]
       },
