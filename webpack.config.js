@@ -4,8 +4,14 @@ const path = require('path');
 //  Why webpack dev server is required for development even webpack does watch and dev build?
 //   1. It will create the actual output file in output folder and it is a costlier process when application grows larger.
 //   2. It will not support Hot reloading in browser.
+
 //  What is hot reloading?
-//   In simple, don't reload the full page after the source file changes, just reload only the part of code which is changed.
+//   In simple, don't reload the full page after the source file changes, just reload only the part of code which is changed. When we update the component local state will be preserved.
+
+// How hot reloading is working?
+// Hot reloading is nothing but Injecting the new version of source files during the runtime
+// whenever we update the Component, the will be preserved and wont reset
+
 
 //  3.Is it possible to run application using webpack?
 //    Yes, it is possible to develop application only for small apps and it will utilize more system
@@ -63,7 +69,8 @@ module.exports = (env) => {
       mode: isProd && 'production' || 'development',
       devServer: {
         contentBase: path.join(__dirname, 'public'),
-        port: 3000
+        port: 3000,
+        hot:true
       }
     
     };

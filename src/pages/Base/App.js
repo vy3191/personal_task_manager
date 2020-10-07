@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from 'components';
+import { hot as horReloader } from 'react-hot-loader/root';
 import './_App';
 // import Header from '../../components/Header/Header';
 // import Footer from '../../components/Footer/Footer';
@@ -11,10 +12,10 @@ class App extends React.Component {
       <div>
         <Header />
         <div>This is the body of the application</div>
-        <h1>Second heading here and</h1>
+        <h1>Second heading here and fdfff</h1>
       </div>
     )
   }
 }
 
-export default App;
+export default horReloader(App);
