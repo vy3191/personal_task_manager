@@ -1,5 +1,10 @@
+
+
 header {
   height: 56px;
-  background: tomato;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $colors-core-primary;
+  color: $colors-greyscale-white;
 }
