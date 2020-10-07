@@ -3,7 +3,6 @@ const path = require('path');
 
 //  Why webpack dev server is required for development even webpack does watch and dev build?
 //   1. It will create the actual output file in output folder and it is a costlier process when application grows larger.
-
 //   2. It will not support Hot reloading in browser.
 //  What is hot reloading?
 //   In simple, don't reload the full page after the source file changes, just reload only the part of code which is changed.
@@ -17,6 +16,13 @@ const path = require('path');
 
 //5. What is webpack-dev-server?
 // webpack-dev-server(Express.js) and implemented Socket.
+
+// Webpack dev server creates two sections in developer tools 'soruces'
+// 1. localhost:<PORT> => Actual application running in the port. With help of this, we can able to view the UI in browser.
+// 2. webpack:// => Socket connection established between my app and browser.
+// What is the use of webpack:// (point 2)?
+// With help of socket connection, we are loading all supporting libraries to run our app on certain port number with dev mode supports like hot reloading, mapping the bundled modules to the actual src file... etc. The main purpose of this support libraries to enable debugging mode with more declaritive error messages
+
 
 module.exports = (env) => {  
     const isProd = env && env.production;
