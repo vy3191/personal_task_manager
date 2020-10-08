@@ -11,10 +11,12 @@ import './_App';
 class App extends React.Component {
   render(){
     return (
-      <div>
+      <>
         <Header />
-        <Home />    
-      </div>
+        <section className="container">
+          <Home />   
+        </section>        
+      </>
     )
   }
 }

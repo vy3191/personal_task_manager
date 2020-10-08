@@ -2,7 +2,28 @@
   font-family: 'Roboto-Regular', Arial, Helvetica, sans-serif;
 }
 
-body {
-  height: 100hv;
-  width: 100vw;
+// Start: Layout creation
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
+header, 
+.container-outer {
+  display: flex;
+}
+
+header {
+  height: 56px;
+}
+
+.container {
+  height: 500px;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow:auto;
+}
+
+// End: Layout creation

@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <div>
-        <header>Personal Task Manager</header>
-      </div>
+        <header>
+          <div>Personal Task Manager</div>
+        </header>    
     );
   }
 }

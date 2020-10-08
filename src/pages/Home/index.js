@@ -4,7 +4,7 @@ import React from 'react';
 class Home extends React.Component {
   render() {
     return(
-      <section>
+      <>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed rutrum quam, gravida bibendum dui. Morbi quis mauris ut libero lacinia porttitor nec ut justo. Nunc nec risus nec eros ornare molestie sit amet ut nulla. Nullam bibendum porttitor lorem. In magna sem, euismod ultricies odio et, tempor cursus massa. Proin pharetra enim non nibh tempus, nec sagittis nulla sodales. Suspendisse commodo ullamcorper nisl, in pulvinar sapien aliquet viverra.</p>
 
         <p>Fusce sem mi, ultricies ac eros suscipit, porttitor convallis purus. Donec in consequat sem, quis tristique nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam lacinia id mi hendrerit ullamcorper. Morbi a viverra enim. Duis tortor nulla, sodales et faucibus id, maximus in lacus. Quisque id odio vel leo ornare aliquet.</p>
@@ -24,7 +24,7 @@ class Home extends React.Component {
         <p>Nam venenatis mi dictum mauris tempor elementum. Nam leo velit, luctus sed pharetra eget, ullamcorper vel turpis. Proin ultrices euismod urna commodo bibendum. Sed congue purus at turpis mattis, vel efficitur ante molestie. Aliquam erat volutpat. Nam pulvinar pellentesque blandit. Sed at neque id erat finibus tincidunt tristique ut lectus. Phasellus sit amet mi vitae urna tincidunt vestibulum. Ut dictum nunc quis erat pretium, in venenatis nunc sollicitudin. Fusce eu porttitor diam. Praesent varius arcu id odio vulputate, eget egestas elit ultricies. Mauris tempor erat vel massa fermentum, nec maximus est condimentum. Pellentesque porta eros vitae dui tincidunt, id ultrices magna tempor.</p>
 
         <p>Sed at mattis nulla. Cras diam ligula, luctus vel porta a, gravida quis tortor. Ut est est, mattis id finibus sit amet, venenatis sed felis. Aenean condimentum, turpis vitae condimentum pretium, magna eros egestas risus, in rutrum orci eros eget sem. Integer vitae massa tempor, viverra sem et, finibus dui. Aliquam iaculis laoreet libero, sit amet aliquam ex ultrices non. Praesent eget est ac lectus facilisis lacinia sed sit amet sapien. Sed aliquet volutpat congue. Pellentesque euismod dui mi, nec laoreet lectus viverra a. Cras sollicitudin, enim a viverra eleifend, arcu felis varius purus, a euismod mi ipsum nec ex. Nulla at est sem.</p>
-    </section>
+    </>
     )
   }
 }
