@@ -1,5 +1,7 @@
 import React from 'react';
 import { Header } from 'components';
+// import {default as Home } from './Home';
+import Home from '../Home';
 import { hot as horReloader } from 'react-hot-loader/root';
 import './_App';
 // import Header from '../../components/Header/Header';
@@ -11,8 +13,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <div>This is the body of the application</div>
-        <h1>Second heading here and fdfff</h1>
+        <Home />    
       </div>
     )
   }
