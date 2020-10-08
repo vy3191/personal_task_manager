@@ -1,5 +1,12 @@
 * {
   font-family: 'Roboto-Regular', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+
+  @media screen and ($device-medium) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 // Start: Layout creation
