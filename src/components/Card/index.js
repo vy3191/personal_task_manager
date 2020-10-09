@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 class Card extends Component {
   render() {
-    const {imgAlt, imgScr, title} = this.props;
+    const {imgAlt, imgSrc, title} = this.props;
     return (
       <article className="components-card">
         <p className={title}>{title}</p>
-        {imgScr && <img src={imgScr} alt={imgAlt} />}
+        {imgSrc && <img src={imgSrc} alt={imgAlt} />}
       </article>
     );
   }
@@ -19,7 +19,7 @@ Card.defaultProps = {
 
 Card.propTypes = {
   imgAlt: PropTypes.string,
-  imgScr: PropTypes.string,
+  imgSrc: PropTypes.string,
   title: PropTypes.string.isRequired
 }
 
