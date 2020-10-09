@@ -6,4 +6,5 @@
 // The above code same of the below code. Both does the same job
 
 export {default as Header} from './Header/Header';
+export {default as Button } from './Button';
 // export {default as Footer} from './Footer/Footer';
