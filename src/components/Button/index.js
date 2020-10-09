@@ -2,12 +2,10 @@ import React from 'react';
 
 class Button extends React.Component {
   render() {
-    return(
-      <React.Fragment>
-        <button className={`button ${buttonMode ? '': 'hideButton'}`}>
+    return(  
+        <button className={`button ${buttonMode ? 'show-button': 'hide-button'}`}>
           {this.props.children}
         </button>
-      </React.Fragment>
     )
   }
 }
