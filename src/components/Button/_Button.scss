@@ -1,0 +1,23 @@
+.components-button {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  &.primary {
+      background-color: $colors-greyscale-light;
+      border: none;
+      color: $colors-greyscale-black;
+      padding: 7px 12px;
+      text-align: center;
+      &:hover {
+        background-color: $colors-greyscale-darker;
+      }
+  }
+  &.action {
+    background-color: $colors-greyscale-white;
+    color:$colors-greyscale-black;
+    text-align: left;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

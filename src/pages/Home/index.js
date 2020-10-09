@@ -1,10 +1,13 @@
 import React from 'react';
+import { Button } from 'components';
 
 
 class Home extends React.Component {
   render() {
     return(
       <>
+       <Button>Delete the list</Button>
+       <Button styleType="action">Add a new card</Button>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed rutrum quam, gravida bibendum dui. Morbi quis mauris ut libero lacinia porttitor nec ut justo. Nunc nec risus nec eros ornare molestie sit amet ut nulla. Nullam bibendum porttitor lorem. In magna sem, euismod ultricies odio et, tempor cursus massa. Proin pharetra enim non nibh tempus, nec sagittis nulla sodales. Suspendisse commodo ullamcorper nisl, in pulvinar sapien aliquet viverra.</p>
 
         <p>Fusce sem mi, ultricies ac eros suscipit, porttitor convallis purus. Donec in consequat sem, quis tristique nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam lacinia id mi hendrerit ullamcorper. Morbi a viverra enim. Duis tortor nulla, sodales et faucibus id, maximus in lacus. Quisque id odio vel leo ornare aliquet.</p>
