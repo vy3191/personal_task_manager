@@ -3,7 +3,7 @@
   font-size: 14px;
   line-height: 18px;
 
-  @media screen and (min-width: 720px) {
+  @media screen and ($device-medium) {
     font-size: 16px;
     line-height: 24px;
   }
