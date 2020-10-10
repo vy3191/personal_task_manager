@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuid4 } from 'uuid';
 import { Button } from 'components';
 
 const COPY = {
@@ -9,13 +10,31 @@ const COPY = {
 }
 
 class List extends Component {
-
-  handleAddNewList(event) {
-    console.log('create a new list')
+  constructor(props) {
+    super(props);
+    this.state= {
+      count:1
+    }
+    this.handleAddNewList = this.handleAddNewList.bind(this);
+    this.handleDeleteList = this.handleDeleteList.bind(this);
   }
 
-  handleDeleteList(event) {
-    console.log('deleting a  list')
+  handleAddNewList() {
+    const { createNewList } = this.props,
+          { count } = this.state,
+          listObj = {
+            id: uuid4(),
+            name: `List ${count}`
+          };
+
+    createNewList(listObj)
+    this.setState(({count:count+1}));
+  }
+
+  handleDeleteList() {
+    const { deleteList,list: {id} } = this.props;
+    deleteList(id)
+
   }
 
   handleAddNewCard(event) {
@@ -24,7 +43,9 @@ class List extends Component {
 
 
   render() {
-    const { addNewList,name } = this.props;
+    console.log('this.props', this.props);
+    const { addNewList, list  } = this.props;
+
     return (
       <article className="components-list">
       {
@@ -35,10 +56,13 @@ class List extends Component {
           >
             {COPY.ADD_NEW_LIST}          
           </Button>
-        ) || (
+        ) 
+      }
+      {       
+        list &&  (
           <React.Fragment>
              <div className="components-list-heading">
-                <p>{name}</p>
+                <p>{list.name}</p>
                 <Button 
                   onClick={ this.handleDeleteList }
                 >
@@ -60,7 +84,10 @@ class List extends Component {
 }
 
 List.propTypes = {
-  addNewList:PropTypes.bool
+  addNewList:PropTypes.bool,
+  createNewList: PropTypes.func,
+  deleteList: PropTypes.func,
+  list: PropTypes.object
 }
 
 export default List;
