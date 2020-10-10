@@ -11,7 +11,7 @@
 
 p {
   margin: 0 0 16px;
-  &:last-child {
+  &:last-child, &:last-of-type {
     margin-bottom: 0;
   }
 }

@@ -15,7 +15,11 @@ class List extends Component {
   }
 
   handleDeleteList(event) {
-    console.log('create a new list')
+    console.log('deleting a  list')
+  }
+
+  handleAddNewCard(event) {
+    console.log('creating a new card')
   }
 
 
@@ -29,19 +33,24 @@ class List extends Component {
             styleType="action"
             onClick={this.handleAddNewList}
           >
-              {COPY.ADD_NEW_LIST}          
+            {COPY.ADD_NEW_LIST}          
           </Button>
         ) || (
           <React.Fragment>
              <div className="components-list-heading">
                 <p>{name}</p>
                 <Button 
-                  styleType="action"
                   onClick={ this.handleDeleteList }
                 >
-                    {COPY.DELETE_LIST}          
+                  {COPY.DELETE_LIST}          
                 </Button>                
              </div>
+             <Button 
+                  styleType="action"
+                  onClick={ this.handleAddNewCard }
+                >
+                  {COPY.ADD_NEW_CARD}          
+              </Button>
           </React.Fragment>
         )
       }

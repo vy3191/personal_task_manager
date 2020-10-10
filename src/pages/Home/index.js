@@ -12,12 +12,18 @@ class Home extends React.Component {
   render() {
     const { lists } = this.state;
     return(
-      <>
-       {
-         !lists.length && <List addNewList />
-       }
-       <List addNewList />        
-      </>
+      <div className="dynamic-lists">
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        <List name="title-one" />
+        
+        <List addNewList />        
+      </div>
     )
   }
 }

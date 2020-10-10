@@ -2,7 +2,23 @@
   width: 240px;
   border: 1px solid $colors-greyscale-black;
   padding: 7px;
+  flex-shrink: 0;
+  &-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+  }
+  &+.components-list {
+      margin-left: 15px;
+  }
   @media screen and ($device-medium) {
     padding: 15px;
+    &-heading {
+      margin-bottom: 15px;
+    }
+    &+.components-list {
+      margin-left: 30px;
+    }
   }
 }

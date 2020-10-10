@@ -1,4 +1,8 @@
-section {
-  height: 500px;
-  display: flex;
+.dynamic-lists {
+  display:flex;
 }
+
+.last-list {
+   min-height: 120px;
+}
+
