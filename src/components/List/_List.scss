@@ -2,23 +2,27 @@
   width: 240px;
   border: 1px solid $colors-greyscale-black;
   padding: 7px;
-  flex-shrink: 0;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  flex-direction: wrap;
   &-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 7px;
   }
-  &+.components-list {
-      margin-left: 15px;
-  }
+  // &+.components-list {
+  //     margin-left: 15px;
+  // }
   @media screen and ($device-medium) {
     padding: 15px;
+    margin-right:30px;
+    margin-bottom:30px;
     &-heading {
       margin-bottom: 15px;
     }
-    &+.components-list {
-      margin-left: 30px;
-    }
+    // &+.components-list {
+    //   margin-left: 30px;
+    // }
   }
 }

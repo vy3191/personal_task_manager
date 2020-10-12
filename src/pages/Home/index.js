@@ -39,17 +39,20 @@ class Home extends React.Component {
       <div className="dynamic-lists">
       {
         lists.map((list) =>  ( 
-          <List 
-            key={list.id} 
-            list={list} 
-            deleteList={this.deleteList}
-          />
+          <div key={list.id} >
+            <List               
+              list={list} 
+              deleteList={this.deleteList}
+            />
+          </div>
         ))
       }
-      <List 
-        addNewList 
-        createNewList={this.createNewList} 
-      />        
+      <div>
+        <List 
+          addNewList 
+          createNewList={this.createNewList} 
+        />
+      </div>        
       </div>
     )
   }
