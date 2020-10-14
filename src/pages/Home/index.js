@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, List, ToggleSwitch } from 'components';
+import { AddNewList, List, ToggleSwitch } from 'components';
 
 const COPY = {
    HORIZONTAL_VIEW: 'Horizontal View',
@@ -51,7 +51,11 @@ class Home extends React.Component {
   
     return(
       <React.Fragment>
-        <ToggleSwitch onChange={ this.handleToggle } >{ toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }</ToggleSwitch>
+        <ToggleSwitch 
+          onChange={ this.handleToggle } 
+        >
+          { toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }
+        </ToggleSwitch>
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
           {
             lists.map((list) =>  ( 
@@ -64,8 +68,7 @@ class Home extends React.Component {
             ))
           }
           <div>
-            <List 
-              addNewList 
+            <AddNewList 
               createNewList={this.createNewList} 
             />
           </div>        
