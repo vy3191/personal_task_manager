@@ -9,4 +9,5 @@ export {default as Header} from './Header/Header';
 export {default as Button } from './Button';
 export {default as Card } from './Card';
 export {default as List } from './List';
+export { default as ToggleSwitch } from './ToggleSwitch';
 // export {default as Footer} from './Footer/Footer';

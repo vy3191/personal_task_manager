@@ -1,9 +1,9 @@
 .dynamic-lists {
-  display:flex;
-  flex-wrap: wrap;
+  display:flex;  
+  &.vertical {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
-.last-list {
-   min-height: 120px;
-}
 

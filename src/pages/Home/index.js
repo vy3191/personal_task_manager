@@ -1,15 +1,21 @@
 import React from 'react';
-import { Button, Card, List } from 'components';
+import { Button, Card, List, ToggleSwitch } from 'components';
 
+const COPY = {
+   HORIZONTAL_VIEW: 'Horizontal View',
+   VERTICAL_VIEW: 'Vertical View'
+}
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists:[]
+      lists:[],
+      toggle: false
     }
     this.createNewList = this.createNewList.bind(this);
     this.deleteList = this.deleteList.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
   
   createNewList(list) {
@@ -31,29 +37,40 @@ class Home extends React.Component {
   //     lists: lists.filter(list => list.id !== id)
   //  }))
   }
+  handleToggle(event) {
+     const {target: { checked }} = event;
+     this.setState({
+       toggle: checked
+     })
+
+  }
 
   render() {
-    const { lists } = this.state;
-    console.log('this.state>>>>>>>>>', this.state)
+    const { lists, toggle } = this.state;
+    console.log('this.state>>>>>>>>>', this.state.toggle)
+  
     return(
-      <div className="dynamic-lists">
-      {
-        lists.map((list) =>  ( 
-          <div key={list.id} >
-            <List               
-              list={list} 
-              deleteList={this.deleteList}
+      <React.Fragment>
+        <ToggleSwitch onChange={ this.handleToggle } >{ toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }</ToggleSwitch>
+        <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
+          {
+            lists.map((list) =>  ( 
+              <div key={list.id} >
+                <List               
+                  list={list} 
+                  deleteList={this.deleteList}
+                />
+              </div>
+            ))
+          }
+          <div>
+            <List 
+              addNewList 
+              createNewList={this.createNewList} 
             />
-          </div>
-        ))
-      }
-      <div>
-        <List 
-          addNewList 
-          createNewList={this.createNewList} 
-        />
-      </div>        
-      </div>
+          </div>        
+        </div>
+      </React.Fragment>
     )
   }
 }
