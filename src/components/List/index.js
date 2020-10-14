@@ -26,13 +26,12 @@ class List extends Component {
             id: uuid4(),
             name: `List ${count}`
           };
-
     createNewList(listObj)
     this.setState(({count:count+1}));
   }
 
   handleDeleteList() {
-    const { deleteList,list: {id} } = this.props;
+    const { deleteList, list: {id} } = this.props;
     deleteList(id)
 
   }
