@@ -48,19 +48,22 @@ class Home extends React.Component {
       }))
   }
 
-  deleteList(id) {
-    const { lists } = this.state;
-    const index = lists.findIndex(list => list.id === id);
+  deleteList(listId) {
+         //  const listCardsMapping = { listID1: [card0, card1,card2,card3], listID2: [card0,c]}
+        //  const { listID1, listID2, listID3 } = listCardsMapping;
+        //  const { ["listID1"]: listID1, ...rest } = listCardsMapping;   #refer these two line for deleting prop from obj dynamically(ES6)
+    const { lists, listCardsMapping: { [listId]: deletedCardMapping, ...restOfListCardMapping }, cards } = this.state;
+    const index = lists.findIndex(list => list.id === listId);
     this.setState({
-     lists: [
-        ...lists.slice(0,index),
-        ...lists.slice(index+1)
-    ]      
-  })
+      lists: [...lists.slice(0,index),  ...lists.slice(index+1)],
+      listCardsMapping: restOfListCardMapping,
+      cards: deletedCardMapping && cards.filter((card) => !deletedCardMapping.includes(card.id)) || cards
+    });
   //   this.setState(({lists}) => ({
   //     lists: lists.filter(list => list.id !== id)
   //  }))
   }
+
   handleToggle(event) {
      const {target: { checked }} = event;
      this.setState({
@@ -71,7 +74,7 @@ class Home extends React.Component {
 
   render() {
     const { lists, toggle, cards } = this.state;
-    console.log('this.state>>>>>>>>>', this.state.cards)
+    console.log('this.state>>>>>>>>>', this.state)
      //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
     return(
       <React.Fragment>
