@@ -11,11 +11,19 @@ class Home extends React.Component {
     super(props);
     this.state = {
       lists:[],
+      cards: [],
       toggle: false
     }
     this.createNewList = this.createNewList.bind(this);
     this.deleteList = this.deleteList.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.createNewCard = this.createNewCard.bind(this);
+  }
+
+  createNewCard(newCard) {
+     this.setState(({cards}) => ({
+        cards: [...cards, newCard]
+     }))
   }
   
   createNewList(list) {
@@ -46,8 +54,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const { lists, toggle } = this.state;
-    console.log('this.state>>>>>>>>>', this.state.toggle)
+    const { lists, toggle, cards } = this.state;
+    console.log('this.state>>>>>>>>>', this.state.cards)
   
     return(
       <React.Fragment>
@@ -63,6 +71,9 @@ class Home extends React.Component {
                 <List               
                   list={list} 
                   deleteList={this.deleteList}
+                  createNewCard={this.createNewCard}
+                  cards={ cards }
+                  
                 />
               </div>
             ))

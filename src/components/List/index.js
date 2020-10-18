@@ -13,7 +13,7 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      cards: []
+      count: 0
     }
     this.handleDeleteList = this.handleDeleteList.bind(this);
     this.handleAddNewCard = this.handleAddNewCard.bind(this);
@@ -26,22 +26,22 @@ class List extends Component {
   }
 
   handleAddNewCard() {
-     const newCard = {
+    const { createNewCard } = this.props,
+    { count } = this.state,
+    newCard = {
        id: uuid4(),
-       title: 'card'
+       title: `Card ${count}`
      };
-     this.setState(({cards}) => ({
-         cards: [...cards, newCard]
-     }));
-     console.log('working now')
+     createNewCard(newCard);
+     this.setState({count: count+1});
+     
   }
 
  
 
 
   render() {
-    const { list } = this.props;
-    const { cards } = this.state;
+    const { list, cards } = this.props;
     return (
       <article className="components-list"> 
         <div className="components-list-heading">
@@ -64,11 +64,17 @@ class List extends Component {
       </article>
     );
   }
-}
+};
+
+List.defaultProps = {
+   cards: []
+};
 
 List.propTypes = {
+  cards: PropTypes.array,
+  createNewCard: PropTypes.func,
   deleteList: PropTypes.func,
   list: PropTypes.object
-}
+};
 
 export default List;
