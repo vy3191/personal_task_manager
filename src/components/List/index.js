@@ -26,13 +26,13 @@ class List extends Component {
   }
 
   handleAddNewCard() {
-    const { createNewCard } = this.props,
+    const { createNewCard, list: { id: listID } } = this.props,
     { count } = this.state,
     newCard = {
        id: uuid4(),
        title: `Card ${count}`
      };
-     createNewCard(newCard);
+     createNewCard(newCard, listID);
      this.setState({count: count+1});
      
   }

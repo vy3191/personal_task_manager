@@ -11,7 +11,8 @@ class Home extends React.Component {
     super(props);
     this.state = {
       lists:[],
-      cards: [],
+      cards: [],   
+      listCardsMapping: {}, 
       toggle: false
     }
     this.createNewList = this.createNewList.bind(this);
@@ -20,10 +21,25 @@ class Home extends React.Component {
     this.createNewCard = this.createNewCard.bind(this);
   }
 
-  createNewCard(newCard) {
-     this.setState(({cards}) => ({
-        cards: [...cards, newCard]
-     }))
+  createNewCard(newCard, listID) {
+    //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
+    const { listCardsMapping, cards } = this.state;
+    if(listCardsMapping[listID]) {
+        listCardsMapping[listID].push(newCard.id);
+    }else {
+        listCardsMapping[listID] = [newCard.id];
+    }
+
+    this.setState({
+        cards: [...cards, newCard],
+        listCardsMapping
+    });
+  }
+
+  filterCards(listID) {
+    const { cards, listCardsMapping } = this.state;
+    if (!listCardsMapping[listID]) return [];
+    return cards.filter((card) => listCardsMapping[listID].includes(card.id));
   }
   
   createNewList(list) {
@@ -56,7 +72,7 @@ class Home extends React.Component {
   render() {
     const { lists, toggle, cards } = this.state;
     console.log('this.state>>>>>>>>>', this.state.cards)
-  
+     //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
     return(
       <React.Fragment>
         <ToggleSwitch 
@@ -72,7 +88,7 @@ class Home extends React.Component {
                   list={list} 
                   deleteList={this.deleteList}
                   createNewCard={this.createNewCard}
-                  cards={ cards }
+                  cards={ this.filterCards(list.id) }
                   
                 />
               </div>
