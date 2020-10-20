@@ -12,7 +12,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       lists:[],
-      cards: [],   
+      cards: { },   
       listCardsMapping: {}, 
       toggle: false
     }
@@ -33,15 +33,18 @@ class Home extends React.Component {
     }
 
     this.setState({
-        cards: [...cards, newCard],
+        cards: { ...cards, [newCard.id]: newCard},   
         listCardsMapping
     });
   }
 
   filterCards(listID) {
-    const { cards, listCardsMapping } = this.state;
-    if (!listCardsMapping[listID]) return [];
-    return cards.filter((card) => listCardsMapping[listID].includes(card.id));
+    const { cards, listCardsMapping:{ [listID]: cardsIDS} } = this.state;
+    if (!cardsIDS) return [];
+    // if (!listCardsMapping[listID]) return [];
+    // return cards.filter((card) => listCardsMapping[listID].includes(card.id));
+    // Instead of filtering the by cards, we need to filter listCardsMapping to keep the cards order
+    return cardsIDS.map( (cardID) => cards[cardID]);
   }
   
   createNewList(list) {
@@ -56,10 +59,12 @@ class Home extends React.Component {
         //  const { ["listID1"]: listID1, ...rest } = listCardsMapping;   #refer these two line for deleting prop from obj dynamically(ES6)
     const { lists, listCardsMapping: { [listId]: deletedCardMapping, ...restOfListCardMapping }, cards } = this.state;
     const index = lists.findIndex(list => list.id === listId);
+    deletedCardMapping && deletedCardMapping.map( (deletedCardId) => delete cards[deletedCardId])
     this.setState({
       lists: [...lists.slice(0,index),  ...lists.slice(index+1)],
       listCardsMapping: restOfListCardMapping,
-      cards: deletedCardMapping && cards.filter((card) => !deletedCardMapping.includes(card.id)) || cards
+      // cards: deletedCardMapping && cards.filter((card) => !deletedCardMapping.includes(card.id)) || cards
+      cards
     });
   //   this.setState(({lists}) => ({
   //     lists: lists.filter(list => list.id !== id)
