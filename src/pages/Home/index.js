@@ -67,7 +67,47 @@ class Home extends React.Component {
   }
 
   onDragEnd(results) {
-    console.log(results);
+      const { 
+          destination: {droppableId: destinationListId, index: destinationCardIndex},
+          draggableId: cardId,
+          source: {droppableId: sourceListId, index: sourceCardIndex},
+          }= results;
+      let { listCardsMapping } = this.state;
+
+    // {
+    //   "draggableId": "b1681c3d-1353-481a-8c60-0f3725122162",
+    //   "type": "DEFAULT",
+    //   "source": {
+    //     "index": 0,
+    //     "droppableId": "05cec7c6-58ef-4054-b479-b521ee47acd9"
+    //   },
+    //   "reason": "DROP",
+    //   "mode": "FLUID",
+    //   "destination": {
+    //     "droppableId": "80d2c6ac-faf8-47c1-928e-0658dd40347b",
+    //     "index": 0
+    //   },
+    //   "combine": null
+    // }
+    
+    // Case i) When source and destination list are same(including the index):
+    if(sourceListId === destinationListId && sourceCardIndex === destinationCardIndex)  return;
+    // Case ii) When source and destination list are same(different indices):
+    if(sourceListId === destinationListId && sourceCardIndex !== destinationCardIndex) {
+      //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]} 
+      // ***sourceListId and destinationListId are same****
+      const cardIDs = listCardsMapping[sourceListId]; 
+      // Removing the cardID from the sourceCardIndex 
+      cardIDs.splice(sourceCardIndex, 1);
+      // Adding the cardID to the destinationCardIndex
+      cardIDs.splice(destinationCardIndex, 0, cardId);
+      // Re-assigning the updated cardIDs to the listCardsMapping of source list id
+      listCardsMapping[sourceListId] = cardIDs;          
+    };
+    // Case iii) When source and destination list are different
+    this.setState({
+      listCardsMapping
+    })
   }
 
   handleToggle(event) {
