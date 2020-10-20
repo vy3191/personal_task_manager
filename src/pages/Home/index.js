@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddNewList, List, ToggleSwitch } from 'components';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const COPY = {
    HORIZONTAL_VIEW: 'Horizontal View',
@@ -19,6 +20,7 @@ class Home extends React.Component {
     this.deleteList = this.deleteList.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.createNewCard = this.createNewCard.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   createNewCard(newCard, listID) {
@@ -64,6 +66,10 @@ class Home extends React.Component {
   //  }))
   }
 
+  onDragEnd(results) {
+    console.log(results);
+  }
+
   handleToggle(event) {
      const {target: { checked }} = event;
      this.setState({
@@ -84,19 +90,24 @@ class Home extends React.Component {
           { toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }
         </ToggleSwitch>
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
+         <DragDropContext
+            onDragEnd={this.onDragEnd}
+         
+         >
           {
-            lists.map((list) =>  ( 
-              <div key={list.id} >
-                <List               
-                  list={list} 
-                  deleteList={this.deleteList}
-                  createNewCard={this.createNewCard}
-                  cards={ this.filterCards(list.id) }
-                  
-                />
-              </div>
-            ))
-          }
+              lists.map((list) =>  ( 
+                <div key={list.id} >
+                  <List               
+                    list={list} 
+                    deleteList={this.deleteList}
+                    createNewCard={this.createNewCard}
+                    cards={ this.filterCards(list.id) }
+                    
+                  />
+                </div>
+              ))
+            }
+         </DragDropContext>
           <div>
             <AddNewList 
               createNewList={this.createNewList} 
