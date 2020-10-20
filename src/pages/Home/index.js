@@ -91,8 +91,7 @@ class Home extends React.Component {
         </ToggleSwitch>
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
          <DragDropContext
-            onDragEnd={this.onDragEnd}
-         
+            onDragEnd={this.onDragEnd}         
          >
           {
               lists.map((list) =>  ( 
