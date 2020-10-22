@@ -63,8 +63,8 @@ class Home extends React.Component {
     this.setState({
       lists: [...lists.slice(0,index),  ...lists.slice(index+1)],
       listCardsMapping: restOfListCardMapping,
-      // cards: deletedCardMapping && cards.filter((card) => !deletedCardMapping.includes(card.id)) || cards
       cards
+      // cards: deletedCardMapping && cards.filter((card) => !deletedCardMapping.includes(card.id)) || cards
     });
   //   this.setState(({lists}) => ({
   //     lists: lists.filter(list => list.id !== id)
@@ -78,6 +78,7 @@ class Home extends React.Component {
           source: {droppableId: sourceListId, index: sourceCardIndex},
           }= results;
       let { listCardsMapping } = this.state;
+      let sourceCardIDs = listCardsMapping[sourceListId]; 
 
     // {
     //   "draggableId": "b1681c3d-1353-481a-8c60-0f3725122162",
@@ -101,18 +102,31 @@ class Home extends React.Component {
     if(sourceListId === destinationListId && sourceCardIndex !== destinationCardIndex) {
       //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]} 
       // ***sourceListId and destinationListId are same****
-      const cardIDs = listCardsMapping[sourceListId]; 
+      // const cardIDs = listCardsMapping[sourceListId];  **MovedUp(|)
       // Removing the cardID from the sourceCardIndex 
-      cardIDs.splice(sourceCardIndex, 1);
+      sourceCardIDs.splice(sourceCardIndex, 1);
       // Adding the cardID to the destinationCardIndex
-      cardIDs.splice(destinationCardIndex, 0, cardId);
-      // Re-assigning the updated cardIDs to the listCardsMapping of source list id
-      listCardsMapping[sourceListId] = cardIDs;          
+      sourceCardIDs.splice(destinationCardIndex, 0, cardId);
+      // Re-assigning the updated sourceCardIDs to the listCardsMapping of source list id
+      listCardsMapping[sourceListId] = sourceCardIDs;          
     };
     // Case iii) When source and destination list are different
-    this.setState({
-      listCardsMapping
-    })
+         //  const listCardsMapping = { listID1: [card0, card1,card2,card3], listID2: [card0,c]}
+         // Grab the source-cardId from listCardMapping
+        if(sourceListId !== destinationListId) {
+          const destinationCardIDs = listCardsMapping[destinationListId]
+          sourceCardIDs.splice(sourceCardIndex,1);
+          // Insert card from source list to destination list
+          destinationCardIDs.splice(destinationCardIndex, 0, cardId);
+          // Re-assign the listIDs in listMapping **ref line 114**
+          listCardsMapping[sourceListId] = sourceCardIDs;
+          listCardsMapping[destinationListId] = destinationCardIDs;
+
+        }
+    
+        this.setState({
+          listCardsMapping
+        })
   }
 
   handleToggle(event) {
