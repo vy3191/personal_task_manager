@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddNewList, List, ToggleSwitch } from 'components';
+import { AddNewList, List, ToggleSwitch, Modal } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 const COPY = {
@@ -153,17 +153,17 @@ class Home extends React.Component {
             onDragEnd={this.onDragEnd}         
          >
           {
-              lists.map((list) =>  ( 
-                <div key={list.id} >
-                  <List               
-                    list={list} 
-                    deleteList={this.deleteList}
-                    createNewCard={this.createNewCard}
-                    cards={ this.filterCards(list.id) }
-                    
-                  />
-                </div>
-              ))
+            lists.map((list) =>  ( 
+              <div key={list.id} >
+                <List               
+                  list={list} 
+                  deleteList={this.deleteList}
+                  createNewCard={this.createNewCard}
+                  cards={ this.filterCards(list.id) }
+                  
+                />
+              </div>
+            ))
             }
          </DragDropContext>
           <div>
@@ -172,6 +172,9 @@ class Home extends React.Component {
             />
           </div>        
         </div>
+        <Modal>
+          <h1>Add your card here</h1>
+        </Modal>
       </React.Fragment>
     )
   }

@@ -11,4 +11,5 @@ export {default as Card } from './Card';
 export {default as Header} from './Header/Header';
 export {default as List } from './List';
 export { default as ToggleSwitch } from './ToggleSwitch';
+export { default as Modal } from './Modal';
 // export {default as Footer} from './Footer/Footer';
