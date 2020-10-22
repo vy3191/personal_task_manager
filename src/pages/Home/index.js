@@ -1,10 +1,12 @@
 import React from 'react';
-import { AddNewList, List, ToggleSwitch, Modal } from 'components';
+import { AddNewList, Button, Modal, List, ToggleSwitch } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 const COPY = {
    HORIZONTAL_VIEW: 'Horizontal View',
-   VERTICAL_VIEW: 'Vertical View'
+   MODAL_CLOSE_BUTTON: 'Close',
+   VERTICAL_VIEW: 'Vertical View',
+
 }
 
 class Home extends React.Component {
@@ -14,13 +16,15 @@ class Home extends React.Component {
       lists:[],
       cards: { },   
       listCardsMapping: {}, 
-      toggle: false
+      toggle: false,
+      modalProps: null
     }
     this.createNewList = this.createNewList.bind(this);
     this.deleteList = this.deleteList.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.createNewCard = this.createNewCard.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   createNewCard(newCard, listID) {
@@ -49,7 +53,8 @@ class Home extends React.Component {
   
   createNewList(list) {
       this.setState(({lists}) => ({
-         lists: [...lists,list]
+         lists: [...lists,list],
+         modalProps: 'creating'
       }))
   }
 
@@ -137,8 +142,12 @@ class Home extends React.Component {
 
   }
 
+  handleModalClose() {
+    this.setState({modalProps:null});
+  }
+
   render() {
-    const { lists, toggle, cards } = this.state;
+    const { lists, toggle, modalProps } = this.state;
     console.log('this.state>>>>>>>>>', this.state)
      //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
     return(
@@ -172,9 +181,15 @@ class Home extends React.Component {
             />
           </div>        
         </div>
-        <Modal>
+        {modalProps && <Modal>
           <h1>Add your card here</h1>
-        </Modal>
+          <Button 
+            styleType="action"
+            onClick={ this.handleModalClose }
+          >
+            {COPY.MODAL_CLOSE_BUTTON}          
+        </Button> 
+        </Modal>}
       </React.Fragment>
     )
   }
