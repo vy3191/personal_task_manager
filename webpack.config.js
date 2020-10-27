@@ -29,6 +29,12 @@ const path = require('path');
 // What is the use of webpack:// (point 2)?
 // With help of socket connection, we are loading all supporting libraries to run our app on certain port number with dev mode supports like hot reloading, mapping the bundled modules to the actual src file... etc. The main purpose of this support libraries to enable debugging mode with more declaritive error messages
 
+// ***THING TO IMPROVE IN WEBPACK ****//
+// Code splitting - Will multiple bundle js
+// Minifying strategy - Webpack 4 itself will provide default minimization. We have add configuration to minimize code in more efficient way. eg: removing console log. Yes - UglifyJSPlugin, TerserPlugin.
+// CSS extraction - At the moment, all the css bundled into single file called bundle.js. With help css extract plugin, we can extract css to seperate file. Yes - ExtractCSSPlugin, MiniCSSExtractPlugin
+// Templating strategy - html-webpack-plugin
+
 
 module.exports = (env) => {  
     const isProd = env && env.production;
