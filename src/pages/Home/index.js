@@ -190,15 +190,6 @@ class Home extends React.Component {
             />
           </div>        
         </div>
-        {/* {modalProps && <Modal>
-          <h1>Add your card here</h1>
-          <Button 
-            styleType="action"
-            onClick={ this.handleModalClose }
-          >
-            {COPY.MODAL_CLOSE_BUTTON}          
-        </Button> 
-        </Modal>} */}
         <ListOverlay />
       </React.Fragment>
     )

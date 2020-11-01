@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuid4 } from 'uuid';
 import { Button, Input, Modal } from 'components';
 
 const COPY = {
@@ -23,11 +24,21 @@ class ListOverlay extends Component {
   }
 
   handleSaveModal(event) {
-    const { handleSave } = this.props,
+    const { handleSave, handleClose } = this.props,
           { inputValue } = this.state;
-    
-    handleSave(event, inputValue);         
-  }
+
+    let result; 
+
+    inputValue && (
+        result = {
+        id: uuid4(),
+        name: inputValue
+      }, 
+      handleSave(event, result),
+      handleClose()
+    );        
+  
+ }
 
   handleTitleInputChange(event) {
     const { target: { value: inputValue}} = event;
@@ -37,7 +48,7 @@ class ListOverlay extends Component {
 
   render() {
     const { handleClose } = this.props;
-    
+
     return (
       <Modal className="home-overlay-modal">
       <h1>{COPY.ADD_NEW_LIST}</h1>
