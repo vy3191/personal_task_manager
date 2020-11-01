@@ -24,7 +24,7 @@ class CardOverlay extends Component {
   }
 
   handleSaveModal(event) {
-    const { handleSave, handleClose } = this.props,
+    const { handleSave, handleClose, list: { id } } = this.props,
           { inputValue } = this.state;
 
     let result; 
@@ -32,9 +32,9 @@ class CardOverlay extends Component {
     inputValue && (
         result = {
         id: uuid4(),
-        name: inputValue
+        title: inputValue
       }, 
-      handleSave(result),
+      handleSave(result, id),
       handleClose()
     );        
   

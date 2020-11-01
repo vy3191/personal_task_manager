@@ -213,6 +213,7 @@ class Home extends React.Component {
           <CardOverlay 
             list={ cardOverlayForList } 
             handleClose={ this.handleCardOverlayClose }  
+            handleSave={ this.createNewCard }
             />}
       </React.Fragment>
     )
