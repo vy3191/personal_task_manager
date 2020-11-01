@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddNewList, Button, Modal, List, ToggleSwitch } from 'components';
+import { AddNewList, Button, Input, Modal, List, ToggleSwitch } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 const COPY = {
@@ -146,6 +146,10 @@ class Home extends React.Component {
     this.setState({modalProps:null});
   }
 
+  handleInputChange(event) {
+        console.log('onchange is triggering now');
+  }
+
   render() {
     const { lists, toggle, modalProps } = this.state;
     console.log('this.state>>>>>>>>>', this.state)
@@ -157,6 +161,7 @@ class Home extends React.Component {
         >
           { toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }
         </ToggleSwitch>
+        <Input ={ this.handleInputChange } id="test" />
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
          <DragDropContext
             onDragEnd={this.onDragEnd}         

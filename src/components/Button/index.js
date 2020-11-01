@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Button extends React.Component {
   render() {
-    const {children,onClick, styleType } = this.props;
+    const {children, onClick, styleType } = this.props;
     return(  
         <button 
           className={`components-button ${styleType}`}

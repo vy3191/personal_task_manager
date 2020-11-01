@@ -4,26 +4,45 @@ import PropTypes from 'prop-types';
 class Input extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      focused:false
+    }
     this.handleBlur = this.handleBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
   }
 
   handleFocus(event) {
-
+    const { onFocus } = this.props;
+     this.setState({
+       focused: true
+     });
+     onFocus && onFocus(event);
   }
 
-  handleChange(event) {
-
-  }
 
   handleBlur(event) {
-
+    const {onBlur } = this.props;
+     this.setState({
+       focused: false
+    });
+    onBlur && onBlur(event);
+     
   }
 
-  render() {
-    const { className, id, type } = this.props;
+  getClassName() {
+    const { className } = this.props,
+            { focused } = this.state;
+    return [
+      className,
+      focused && 'focused'      
+    ].filter( v => v).join(' ');
+  }
+  
 
+  render() {
+    const { id, onChange, type } = this.props,
+             className = this.getClassName();
+   
     return (
       <div className="components-input">
         <input
@@ -32,7 +51,7 @@ class Input extends Component {
           name={ name || id }
           type={ type }
           onBlur={ this.handleBlur }
-          onChange={ this.handleChange }
+          onChange={ onChange }
           onFocus={ this.handleFocus }
         />        
       </div>
@@ -48,6 +67,9 @@ Input.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   type: PropTypes.string
 };
 
