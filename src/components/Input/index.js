@@ -37,7 +37,8 @@ class Input extends Component {
       focused && 'focused'      
     ].filter( v => v).join(' ');
   }
-  
+
+
 
   render() {
     const { id, onChange, type } = this.props,

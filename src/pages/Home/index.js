@@ -1,6 +1,7 @@
 import React from 'react';
 import { AddNewList, Button, Input, Modal, List, ToggleSwitch } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
+import ListOverlay from './ListOverlay';
 
 const COPY = {
    HORIZONTAL_VIEW: 'Horizontal View',
@@ -147,7 +148,8 @@ class Home extends React.Component {
   }
 
   handleInputChange(event) {
-        console.log('onchange is triggering now');
+        const { value } = event.target;
+        console.log('value>>>', value)
   }
 
   render() {
@@ -161,7 +163,9 @@ class Home extends React.Component {
         >
           { toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }
         </ToggleSwitch>
-        <Input ={ this.handleInputChange } id="test" />
+        <Input 
+          onChange={ this.handleInputChange } 
+          id="test" />
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
          <DragDropContext
             onDragEnd={this.onDragEnd}         
@@ -186,15 +190,7 @@ class Home extends React.Component {
             />
           </div>        
         </div>
-        {modalProps && <Modal>
-          <h1>Add your card here</h1>
-          <Button 
-            styleType="action"
-            onClick={ this.handleModalClose }
-          >
-            {COPY.MODAL_CLOSE_BUTTON}          
-        </Button> 
-        </Modal>}
+        <ListOverlay />
       </React.Fragment>
     )
   }
