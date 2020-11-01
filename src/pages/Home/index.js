@@ -56,7 +56,6 @@ class Home extends React.Component {
   createNewList(list) {
       this.setState(({lists}) => ({
          lists: [...lists,list],
-         showListOverlay: 'creating'
       }))
   }
 
@@ -194,7 +193,7 @@ class Home extends React.Component {
         </div>
         { showListOverlay && <ListOverlay 
           handleClose={ this.handleListOverlayClose }
-          // handleSave={}
+          handleSave={ this.createNewList }
         />}
       </React.Fragment>
     )

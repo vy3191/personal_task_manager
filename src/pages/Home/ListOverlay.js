@@ -34,7 +34,7 @@ class ListOverlay extends Component {
         id: uuid4(),
         name: inputValue
       }, 
-      handleSave(event, result),
+      handleSave(result),
       handleClose()
     );        
   
