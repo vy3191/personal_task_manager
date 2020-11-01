@@ -17,7 +17,7 @@ class List extends Component {
       count: 0
     }
     this.handleDeleteList = this.handleDeleteList.bind(this);
-    this.handleAddNewCard = this.handleAddNewCard.bind(this);
+    this.addNewCard = this.addNewCard.bind(this);
   }
   
   handleDeleteList() {
@@ -26,20 +26,10 @@ class List extends Component {
 
   }
 
-  handleAddNewCard() {
-    const { createNewCard, list: { id: listID } } = this.props,
-    { count } = this.state,
-    newCard = {
-       id: uuid4(),
-       title: `Card ${count}`
-     };
-     createNewCard(newCard, listID);
-     this.setState({count: count+1});
-     
+  addNewCard() {
+    const { handleAddNewCard, list } = this.props;
+    handleAddNewCard(list);     
   }
-
- 
-
 
   render() {
     const { list, cards } = this.props;
@@ -68,7 +58,7 @@ class List extends Component {
         </Droppable>
         <Button 
             styleType="action"
-            onClick={ this.handleAddNewCard }
+            onClick={ this.addNewCard }
           >
             {COPY.ADD_NEW_CARD}          
         </Button>           
@@ -83,7 +73,7 @@ List.defaultProps = {
 
 List.propTypes = {
   cards: PropTypes.array,
-  createNewCard: PropTypes.func,
+  handleAddNewCard: PropTypes.func,
   deleteList: PropTypes.func,
   list: PropTypes.object
 };

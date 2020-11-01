@@ -1,6 +1,7 @@
 import React from 'react';
 import { AddNewList, Button, Input, Modal, List, ToggleSwitch } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
+import CardOverlay from './CardOverlay';
 import ListOverlay from './ListOverlay';
 
 const COPY = {
@@ -14,17 +15,20 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists:[],
       cards: { },   
+      cardOverlayForList: null,
+      lists:[],
       listCardsMapping: {}, 
+      showListOverlay: false,
       toggle: false,
-      showListOverlay: false
     }
     this.createNewCard = this.createNewCard.bind(this);
     this.createNewList = this.createNewList.bind(this);
     this.deleteList = this.deleteList.bind(this);
     this.handleNewList = this.handleNewList.bind(this);
+    this.handleAddNewCard = this.handleAddNewCard.bind(this);
     this.handleListOverlayClose = this.handleListOverlayClose.bind(this);
+    this.handleCardOverlayClose = this.handleCardOverlayClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -61,6 +65,12 @@ class Home extends React.Component {
 
   handleNewList() {
     this.setState({ showListOverlay: true})
+  }
+
+  handleAddNewCard(list) {
+    this.setState({
+      cardOverlayForList: list
+    });
   }
 
   deleteList(listId) {
@@ -151,13 +161,17 @@ class Home extends React.Component {
     this.setState({showListOverlay:false});
   }
 
+  handleCardOverlayClose(){
+    this.setState({ cardOverlayForList: null})
+  }
+
   handleInputChange(event) {
         const { value } = event.target;
         console.log('value>>>', value)
   }
 
   render() {
-    const { lists, toggle, showListOverlay } = this.state;
+    const { cardOverlayForList, lists, toggle, showListOverlay } = this.state;
     console.log('this.state>>>>>>>>>', this.state)
      //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
     return(
@@ -177,8 +191,8 @@ class Home extends React.Component {
                 <List               
                   list={list} 
                   deleteList={this.deleteList}
-                  createNewCard={this.createNewCard}
-                  cards={ this.filterCards(list.id) }
+                  handleAddNewCard={this.handleAddNewCard}
+                  cards={this.filterCards(list.id)}
                   
                 />
               </div>
@@ -195,6 +209,11 @@ class Home extends React.Component {
           handleClose={ this.handleListOverlayClose }
           handleSave={ this.createNewList }
         />}
+        { cardOverlayForList && 
+          <CardOverlay 
+            list={ cardOverlayForList } 
+            handleClose={ this.handleCardOverlayClose }  
+            />}
       </React.Fragment>
     )
   }
