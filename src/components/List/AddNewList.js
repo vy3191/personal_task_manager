@@ -8,34 +8,15 @@ const COPY = {
 }
 
 class AddNewList extends Component {
-  constructor(props) {
-    super(props);
-    this.state= {
-      count:1
-    }
-    this.handleAddNewList = this.handleAddNewList.bind(this);
-  }
-
-  handleAddNewList() {
-    const { createNewList } = this.props,
-          { count } = this.state,
-          listObj = {
-            id: uuid4(),
-            name: `List ${count}`
-          };
-    createNewList(listObj)
-    this.setState(({count:count+1}));
-  }
-
-
+  
   render() {
-    const { addNewList } = this.props;
+    const { handleNewList } = this.props;
 
     return (
       <article className="components-list">     
         <Button 
           styleType="action"
-          onClick={this.handleAddNewList}
+          onClick={ handleNewList }
         >
           {COPY.ADD_NEW_LIST}          
         </Button>    
@@ -45,7 +26,7 @@ class AddNewList extends Component {
 }
 
 AddNewList.propTypes = {
-  createNewList: PropTypes.func
+  handleNewList: PropTypes.func
 }
 
 export default AddNewList;

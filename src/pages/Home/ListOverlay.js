@@ -18,7 +18,7 @@ class ListOverlay extends Component {
       inputValue: '',
       showModal: true
     };
-
+    
     this.handleSaveModal = this.handleSaveModal.bind(this);
     this.handleTitleInputChange = this.handleTitleInputChange.bind(this);
   }
@@ -62,7 +62,7 @@ class ListOverlay extends Component {
       </div>
       <div className="button-group">
         <Button
-          onClick={ this.handleClose }
+          onClick={ handleClose }
         >
           {COPY.CLOSE_BUTTON}
         </Button> 

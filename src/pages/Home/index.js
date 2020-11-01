@@ -18,14 +18,15 @@ class Home extends React.Component {
       cards: { },   
       listCardsMapping: {}, 
       toggle: false,
-      modalProps: null
+      showListOverlay: false
     }
+    this.createNewCard = this.createNewCard.bind(this);
     this.createNewList = this.createNewList.bind(this);
     this.deleteList = this.deleteList.bind(this);
+    this.handleNewList = this.handleNewList.bind(this);
+    this.handleListOverlayClose = this.handleListOverlayClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
-    this.createNewCard = this.createNewCard.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
-    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   createNewCard(newCard, listID) {
@@ -55,8 +56,12 @@ class Home extends React.Component {
   createNewList(list) {
       this.setState(({lists}) => ({
          lists: [...lists,list],
-         modalProps: 'creating'
+         showListOverlay: 'creating'
       }))
+  }
+
+  handleNewList() {
+    this.setState({ showListOverlay: true})
   }
 
   deleteList(listId) {
@@ -143,8 +148,8 @@ class Home extends React.Component {
 
   }
 
-  handleModalClose() {
-    this.setState({modalProps:null});
+  handleListOverlayClose() {
+    this.setState({showListOverlay:false});
   }
 
   handleInputChange(event) {
@@ -153,7 +158,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { lists, toggle, modalProps } = this.state;
+    const { lists, toggle, showListOverlay } = this.state;
     console.log('this.state>>>>>>>>>', this.state)
      //  const listCardsMapping = { listID1: [card0], listID2: [card0,c]}
     return(
@@ -163,9 +168,6 @@ class Home extends React.Component {
         >
           { toggle && COPY.VERTICAL_VIEW || COPY.HORIZONTAL_VIEW }
         </ToggleSwitch>
-        <Input 
-          onChange={ this.handleInputChange } 
-          id="test" />
         <div className={`dynamic-lists ${toggle && 'vertical' || ''}`}>
          <DragDropContext
             onDragEnd={this.onDragEnd}         
@@ -186,11 +188,14 @@ class Home extends React.Component {
          </DragDropContext>
           <div>
             <AddNewList 
-              createNewList={this.createNewList} 
+              handleNewList={this.handleNewList} 
             />
           </div>        
         </div>
-        <ListOverlay />
+        { showListOverlay && <ListOverlay 
+          handleClose={ this.handleListOverlayClose }
+          // handleSave={}
+        />}
       </React.Fragment>
     )
   }
