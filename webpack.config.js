@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 // webpack config should be return as a function or an object
 
 //  Why webpack dev server is required for development even webpack does watch and dev build?
@@ -44,6 +46,7 @@ module.exports = (env) => {
       watch: !isProd,
       entry: './src/index.js',
       output: {
+        // output.path --> creates the actual file -- used by modules, plugins for transfiling the source to output
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js'
       },
@@ -77,7 +80,17 @@ module.exports = (env) => {
         contentBase: path.join(__dirname, 'public'),
         port: 3000,
         hot:true
-      }
+      },
+      plugins: [ new HtmlWebpackPlugin({
+        // By default file name will be index.html if you do not mention
+        filename: 'index.html',
+        title: 'venkatesh',
+        meta: {
+          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          description: 'Personal-task-manger-description'
+        },
+        template: path.resolve(__dirname, 'template.html')
+      })]
     
     };
 }
