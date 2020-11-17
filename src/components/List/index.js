@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Droppable } from 'react-beautiful-dnd';
 import { Button, Card } from 'components';
 import { v4 as uuid4 } from 'uuid';
@@ -10,7 +8,7 @@ const COPY = {
   DELETE_LIST: 'Delete this list'
 }
 
-class List extends Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state= {

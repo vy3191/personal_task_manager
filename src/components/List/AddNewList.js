@@ -7,7 +7,7 @@ const COPY = {
   ADD_NEW_LIST: 'Add new list...', 
 }
 
-class AddNewList extends Component {
+class AddNewList extends React.Component {
   
   render() {
     const { handleNewList } = this.props;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class ToggleSwitch extends Component {
+class ToggleSwitch extends React.Component {
   render() {
     const { children, onChange } = this.props;
     return (

@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { v4 as uuid4 } from 'uuid';
 import { Button, Input, Modal } from 'components';
 
@@ -10,7 +8,7 @@ const COPY = {
   SAVE_BUTTON: 'Save'
 }
 
-class CardOverlay extends Component {
+class CardOverlay extends React.Component {
   constructor(props){
     super(props);
 

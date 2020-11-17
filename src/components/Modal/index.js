@@ -1,8 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-
-class Modal extends Component {
+class Modal extends React.Component {
   constructor(props){
     super(props);
     this.state = {

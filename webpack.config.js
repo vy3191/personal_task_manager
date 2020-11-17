@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // webpack config should be return as a function or an object
@@ -37,6 +38,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // CSS extraction - At the moment, all the css bundled into single file called bundle.js. With help css extract plugin, we can extract css to seperate file. Yes - ExtractCSSPlugin, MiniCSSExtractPlugin
 // Templating strategy - html-webpack-plugin
 
+// Plugings
+// 1.HtmlWebpackPlugin
+// 2.CopyWebpackPlugin
+// 3.DefinePlugin
+// 4.HotModuleReplacementPlugin
+// 5.IgnorePlugin
+// 6.MiniCssExtractPlugin
+// 7.NoEmitOnErrorsPlugin
+// 8.TerserPlugin
+// 9.ProvidePlugin
+
 
 module.exports = (env) => {  
     const isProd = env && env.production;
@@ -48,7 +60,7 @@ module.exports = (env) => {
       output: {
         // output.path --> creates the actual file -- used by modules, plugins for transfiling the source to output
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: '[hash].bundle.js'
       },
       resolve: {
         extensions: [ '.jsx', '.js', '.json', '.css', '.scss'],
@@ -81,16 +93,31 @@ module.exports = (env) => {
         port: 3000,
         hot:true
       },
-      plugins: [ new HtmlWebpackPlugin({
-        // By default file name will be index.html if you do not mention
-        filename: 'index.html',
-        title: 'venkatesh',
-        meta: {
-          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-          description: 'Personal-task-manger-description'
-        },
-        template: path.resolve(__dirname, 'template.html')
-      })]
+      plugins: [
+         new HtmlWebpackPlugin({
+            // By default file name will be index.html if you do not mention
+            filename: 'index.html',
+            title: 'TSK',
+            meta: {
+              viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+              description: 'Personal-task-manger-description'
+            },
+            template: path.resolve(__dirname, 'template.html')
+         }),
+        new webpack.DefinePlugin({
+          MAINTAIN: false,
+          "process.env.CHECKING": false
+        }),
+        new webpack.ProvidePlugin({
+          React: 'react',
+          ReactDOM: 'react-dom',
+          PropTypes: 'prop-types'
+        }),
+       new webpack.NoEmitOnErrorsPlugin() // Ti is depreciated 
+      ],
+      // optimization: {    // By default it will be false --> At the compilation if the webpack finds any error, it will not emit bundle.js file.
+      //    emitOnErrors: false
+      // }
     
     };
 }

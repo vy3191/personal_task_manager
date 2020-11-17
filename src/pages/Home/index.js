@@ -1,4 +1,3 @@
-import React from 'react';
 import { AddNewList, Button, Input, Modal, List, ToggleSwitch } from 'components';
 import { DragDropContext } from 'react-beautiful-dnd';
 import CardOverlay from './CardOverlay';

@@ -10,7 +10,7 @@ const COPY = {
   SAVE_BUTTON: 'Save'
 }
 
-class ListOverlay extends Component {
+class ListOverlay extends React.Component {
   constructor(props){
     super(props);
 

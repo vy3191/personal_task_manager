@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 
-class Card extends Component {
+class Card extends React.Component {
   render() {
     const { card: {id, imgAlt="", imgSrc, title}, index } = this.props;
     return (
