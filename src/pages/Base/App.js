@@ -3,7 +3,7 @@ import { Header } from 'components';
 
 // import {default as Home } from './Home';
 import Home from '../Home';
-import { hot as horReloader } from 'react-hot-loader/root';
+import { hot as hotReloader } from 'react-hot-loader/root';
 // import Header from '../../components/Header/Header';
 // import Footer from '../../components/Footer/Footer';
 
@@ -21,4 +21,4 @@ class App extends React.Component {
   }
 }
 
-export default horReloader(App);
+export default hotReloader(App);
